@@ -42,8 +42,8 @@ class SuraEnController extends GetxController {
       suraAyat.value.clear();
       update();
     }
-    var list = await _dataBaseHelper.getFullByAya(suraId, firstAya);
-    suraAyat.addAll(list);
+    // var list = await _dataBaseHelper.getFullByAya(suraId, firstAya);
+    // suraAyat.addAll(list);
     fetchingData.value = false;
     update();
   }

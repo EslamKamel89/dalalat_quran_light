@@ -2,16 +2,9 @@ import 'dart:ui';
 
 import 'package:dalalat_quran_light/controllers/player_bottom_controller.dart';
 import 'package:dalalat_quran_light/controllers/settings_controller.dart';
-import 'package:dalalat_quran_light/db/database_helper.dart';
-import 'package:dalalat_quran_light/ui/player_bottom_widget.dart';
-import 'package:dalalat_quran_light/ui/short_explanation_index.dart';
 import 'package:dalalat_quran_light/utils/colors.dart';
-import 'package:dalalat_quran_light/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../utils/audio_download.dart';
 
 // ignore: must_be_immutable
 class SelectRecitationsDialog extends StatelessWidget {
@@ -91,25 +84,25 @@ class SelectRecitationsDialog extends StatelessWidget {
                                       ),
                                     ),
                                     onTap: () async {
-                                      var preferences = await SharedPreferences.getInstance();
-                                      await preferences.setString(
-                                        reciterKey,
-                                        settingsController.recitersList[index].id.toString(),
-                                      );
+                                      // var preferences = await SharedPreferences.getInstance();
+                                      // await preferences.setString(
+                                      //   reciterKey,
+                                      //   settingsController.recitersList[index].id.toString(),
+                                      // );
 
-                                      playerBottomController.currentReciter.value =
-                                          await DataBaseHelper.dataBaseInstance().getCurrentReciter(
-                                            settingsController.recitersList[index].id,
-                                          );
+                                      // playerBottomController.currentReciter.value =
+                                      //     await DataBaseHelper.dataBaseInstance().getCurrentReciter(
+                                      //       settingsController.recitersList[index].id,
+                                      //     );
 
-                                      currentReciter.value = settingsController
-                                          .recitersList[index]
-                                          .id
-                                          .toString();
-                                      AudioDownload().downloadPage(currentPage.value);
-                                      await audioPlayer.stop();
-                                      playerBottomController.update();
-                                      Get.back();
+                                      // currentReciter.value = settingsController
+                                      //     .recitersList[index]
+                                      //     .id
+                                      //     .toString();
+                                      // AudioDownload().downloadPage(currentPage.value);
+                                      // await audioPlayer.stop();
+                                      // playerBottomController.update();
+                                      // Get.back();
                                     },
                                   );
                                 },

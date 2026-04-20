@@ -1,10 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:dalalat_quran_light/db/database_helper.dart';
-import 'package:dalalat_quran_light/ui/new_single_sura_screen.dart';
-import 'package:dalalat_quran_light/ui/player_bottom_widget.dart';
 import 'package:dalalat_quran_light/ui/short_explanation_index.dart';
-import 'package:dalalat_quran_light/ui/sura_en_screen.dart';
-import 'package:dalalat_quran_light/utils/audio_folders.dart';
 import 'package:dalalat_quran_light/utils/colors.dart';
 import 'package:dalalat_quran_light/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -60,41 +54,41 @@ class _PlayerSliderState extends State<PlayerSlider> {
             });
           },
           onChangeEnd: (value) async {
-            if (widget.onSeekChange != null) {
-              widget.onSeekChange!(value);
-            } else {
-              await audioPlayer.stop();
-              var s = await DataBaseHelper.dataBaseInstance().getAyaId(
-                playerSuraId.value,
-                value.toInt(),
-              );
-              // setState(() {
-              selectedAyaId.value = s.toString();
-              var i = value.toInt();
-              selectAyaNo.value = i.toString();
-              selectedAyaId.value = (int.parse(selectedAyaId.value)).toString();
+            // if (widget.onSeekChange != null) {
+            //   widget.onSeekChange!(value);
+            // } else {
+            //   await audioPlayer.stop();
+            //   var s = await DataBaseHelper.dataBaseInstance().getAyaId(
+            //     playerSuraId.value,
+            //     value.toInt(),
+            //   );
+            //   // setState(() {
+            //   selectedAyaId.value = s.toString();
+            //   var i = value.toInt();
+            //   selectAyaNo.value = i.toString();
+            //   selectedAyaId.value = (int.parse(selectedAyaId.value)).toString();
 
-              currentPage.value =
-                  await DataBaseHelper.dataBaseInstance().getAyaPage(selectedAyaId.value) - 1;
+            //   currentPage.value =
+            //       await DataBaseHelper.dataBaseInstance().getAyaPage(selectedAyaId.value) - 1;
 
-              String newPath = await AudioFolders().generatePath(
-                currentReciter.value,
-                playerSuraId.value.toString(),
-                selectAyaNo.value.toString(),
-              );
+            //   String newPath = await AudioFolders().generatePath(
+            //     currentReciter.value,
+            //     playerSuraId.value.toString(),
+            //     selectAyaNo.value.toString(),
+            //   );
 
-              audioPlayer.play(DeviceFileSource(newPath));
-              if (parentWidget != null) {
-                if (parentWidget!.mounted) {
-                  parentWidget!.setState(() {});
-                }
-              }
-            }
+            //   audioPlayer.play(DeviceFileSource(newPath));
+            //   if (parentWidget != null) {
+            //     if (parentWidget!.mounted) {
+            //       parentWidget!.setState(() {});
+            //     }
+            //   }
+            // }
 
-            if (autoScrollController != null) {
-              autoScrollController!.scrollToIndex(int.parse(selectAyaNo.value) - 1);
-              suraEnController.update();
-            }
+            // if (autoScrollController != null) {
+            //   autoScrollController!.scrollToIndex(int.parse(selectAyaNo.value) - 1);
+            //   suraEnController.update();
+            // }
 
             // });
           },
