@@ -47,7 +47,7 @@ dependencies:
   flutter_debouncer: ^2.1.1
   flutter_html: ^3.0.0
   flutter_launcher_icons: ^0.14.3
-  flutter_local_notifications: ^20.1.0
+  # flutter_local_notifications: ^20.1.0
   flutter_material_color_picker: ^1.2.0
   flutter_screenutil: ^5.9.3
   flutter_spinkit: ^5.2.1
@@ -77,7 +77,6 @@ dependencies:
   zoom_widget: ^2.0.1
 
 dev_dependencies:
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

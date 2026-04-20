@@ -1,11 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:dalalat_quran_light/db/database_helper.dart';
-import 'package:dalalat_quran_light/main.dart';
 import 'package:dalalat_quran_light/models/reciters_model.dart';
 import 'package:dalalat_quran_light/models/sura_model.dart';
 import 'package:dalalat_quran_light/utils/constants.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AudioRecitationController extends GetxController {
@@ -35,7 +33,7 @@ class AudioRecitationController extends GetxController {
   }
 
   void getReciter() async {
-    recitersList.value = await DataBaseHelper.dataBaseInstance().getReciters();
+    // recitersList.value = await DataBaseHelper.dataBaseInstance().getReciters();
     var sharedPref = await SharedPreferences.getInstance();
     var selectedReciterId = sharedPref.getString(reciterKey) ?? "1";
     try {

@@ -5,7 +5,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:dalalat_quran_light/db/database_helper.dart';
 import 'package:dalalat_quran_light/features/chat/presentation/chat_screen.dart';
 import 'package:dalalat_quran_light/features/grammer_rules/presentation/views/grammer_rules_view.dart';
-import 'package:dalalat_quran_light/features/notifications/firebase.dart';
 import 'package:dalalat_quran_light/features/radio/presenation/radio_screen.dart';
 import 'package:dalalat_quran_light/features/words/presentation/roots_view.dart';
 import 'package:dalalat_quran_light/ui/about_app_screen.dart';
@@ -49,7 +48,7 @@ void main() async {
   GetStorage().read(KnormalFontColor);
   GetStorage().read(KtagWordsColor);
   log('Strorageeg ${GetStorage().read(KreadWordsColor)}');
-  await DataBaseHelper().initDb(); // Init DataBase
+  // await DataBaseHelper().initDb(); // Init DataBase
   await DataBaseHelper.dataBaseInstance().suraIndex();
   runApp(const DlalatQuran());
 }

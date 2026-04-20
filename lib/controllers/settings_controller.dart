@@ -111,15 +111,15 @@ class SettingsController extends GetxController {
   }
 
   void getReciters() async {
-    lastSyncDate.value = await DataBaseHelper.dataBaseInstance().getLastSyncDate();
-    recitersList.value = await DataBaseHelper.dataBaseInstance().getReciters();
-    for (var x = 0; x < recitersList.length; x++) {
-      recitersIds.add(recitersList[x].id.toString());
-    }
-    update();
-    getSelectedReciter();
+    // lastSyncDate.value = await DataBaseHelper.dataBaseInstance().getLastSyncDate();
+    // recitersList.value = await DataBaseHelper.dataBaseInstance().getReciters();
+    // for (var x = 0; x < recitersList.length; x++) {
+    //   recitersIds.add(recitersList[x].id.toString());
+    // }
+    // update();
+    // getSelectedReciter();
 
-    update();
+    // update();
   }
 
   void getSelectedReciter() {
@@ -137,22 +137,22 @@ class SettingsController extends GetxController {
 
   void setPageBg(int index) {
     pageBg.value = index;
-    DataBaseHelper.dataBaseInstance().updateColor(KpageBg, pageBg.value);
+    // DataBaseHelper.dataBaseInstance().updateColor(KpageBg, pageBg.value);
   }
 
   void setNormalFont(int index) {
     normalFontColor.value = index;
-    DataBaseHelper.dataBaseInstance().updateColor(KnormalFontColor, normalFontColor.value);
+    // DataBaseHelper.dataBaseInstance().updateColor(KnormalFontColor, normalFontColor.value);
   }
 
   void setTagWordsColor(int index) {
     tagWordsColor.value = index;
-    DataBaseHelper.dataBaseInstance().updateColor(KtagWordsColor, tagWordsColor.value);
+    // DataBaseHelper.dataBaseInstance().updateColor(KtagWordsColor, tagWordsColor.value);
   }
 
   void setReadingColor(int index) {
     readWordsColor.value = index;
-    DataBaseHelper.dataBaseInstance().updateColor(KreadWordsColor, readWordsColor.value);
+    // DataBaseHelper.dataBaseInstance().updateColor(KreadWordsColor, readWordsColor.value);
   }
 
   void saveSetting() {
