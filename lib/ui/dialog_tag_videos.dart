@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
 
-import 'package:dalalat_quran_light/db/database_helper.dart';
 import 'package:dalalat_quran_light/models/video_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,7 +86,7 @@ class TagVideosController extends GetxController {
   var videosList = <VideoModel>[].obs;
 
   getVideos(TagModel tagId) async {
-    videosList.value = await DataBaseHelper().tagsVideos(tagId.id!);
+    // videosList.value = await DataBaseHelper().tagsVideos(tagId.id!);
     update();
   }
 }

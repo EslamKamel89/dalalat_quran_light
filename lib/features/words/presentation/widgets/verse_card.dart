@@ -30,7 +30,7 @@ class _VerseCardState extends State<VerseCard> {
       pr('surahId or verNumber is null');
       return;
     }
-    words = await db.getDetails2(widget.verse.surahId!, widget.verse.verseNumber!);
+    // words = await db.getDetails2(widget.verse.surahId!, widget.verse.verseNumber!);
     loading = false;
     if (mounted) {
       setState(() {});

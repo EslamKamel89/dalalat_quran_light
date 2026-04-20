@@ -3,7 +3,6 @@ import 'package:dalalat_quran_light/controllers/read_aya_controller.dart';
 import 'package:dalalat_quran_light/controllers/word_tag_controller.dart';
 import 'package:dalalat_quran_light/db/database_helper.dart';
 import 'package:dalalat_quran_light/models/TagWordModel.dart';
-import 'package:dalalat_quran_light/models/reciters_model.dart';
 import 'package:dalalat_quran_light/models/word_model.dart';
 import 'package:dalalat_quran_light/ui/player_bottom_widget.dart';
 import 'package:dalalat_quran_light/ui/settings_screen/setting_screen.dart';
@@ -506,8 +505,8 @@ class NewSingleSuraScreenState extends State<NewSingleSuraScreen> {
     var sharedPef = await SharedPreferences.getInstance();
     var x = sharedPef.getString(reciterKey) ?? "1";
 
-    ReciterModel reciter = await DataBaseHelper.dataBaseInstance().getCurrentReciter(x.toString());
-    reciterId = reciter.id!.toString();
+    // ReciterModel reciter = await DataBaseHelper.dataBaseInstance().getCurrentReciter(x.toString());
+    // reciterId = reciter.id!.toString();
   }
 }
 
