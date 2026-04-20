@@ -1,12 +1,8 @@
-import 'package:dalalat_quran_light/db/database_helper.dart';
 import 'package:dalalat_quran_light/models/reciters_model.dart';
 import 'package:dalalat_quran_light/ui/player_bottom_widget.dart';
 import 'package:dalalat_quran_light/utils/colors.dart';
-import 'package:dalalat_quran_light/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayerBottomController extends GetxController {
   var prevAya = '';
@@ -30,10 +26,10 @@ class PlayerBottomController extends GetxController {
   }
 
   void getCurrentReciter() async {
-    var sharedPref = await SharedPreferences.getInstance();
-    var x = sharedPref.getString(reciterKey) ?? "1";
-    currentReciter.value = await DataBaseHelper.dataBaseInstance().getCurrentReciter(x.toString());
-    update();
+    // var sharedPref = await SharedPreferences.getInstance();
+    // var x = sharedPref.getString(reciterKey) ?? "1";
+    // currentReciter.value = await DataBaseHelper.dataBaseInstance().getCurrentReciter(x.toString());
+    // update();
   }
 
   // void getNextRecitationModel(int sura_id, String ayaNo) async {

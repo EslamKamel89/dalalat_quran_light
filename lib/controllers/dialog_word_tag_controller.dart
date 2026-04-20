@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:dalalat_quran_light/db/database_helper.dart';
 import 'package:dalalat_quran_light/models/video_model.dart';
 import 'package:get/get.dart';
 import 'package:html/parser.dart';
@@ -12,17 +9,17 @@ class DialogWordTagController extends GetxController {
   var videoModels = <VideoModel>[].obs;
 
   void getTagVideo(String tagId, int wordId) async {
-    var values = await DataBaseHelper.dataBaseInstance().getTagVideo(tagId);
-    videoUrl.value = await DataBaseHelper.dataBaseInstance().videoUrlWord(wordId);
-    wordName.value = values['name'].toString();
-    description.value = _parseHtmlString(values['desc'].toString());
-    log('values = ${description.value}');
-    getTagVideos(int.parse(tagId));
+    // var values = await DataBaseHelper.dataBaseInstance().getTagVideo(tagId);
+    // videoUrl.value = await DataBaseHelper.dataBaseInstance().videoUrlWord(wordId);
+    // wordName.value = values['name'].toString();
+    // description.value = _parseHtmlString(values['desc'].toString());
+    // log('values = ${description.value}');
+    // getTagVideos(int.parse(tagId));
   }
 
   void getTagVideos(int tagId) async {
-    videoModels.value = await DataBaseHelper.dataBaseInstance().tagsVideos(tagId);
-    update();
+    // videoModels.value = await DataBaseHelper.dataBaseInstance().tagsVideos(tagId);
+    // update();
   }
 
   String _parseHtmlString(String htmlString) {
