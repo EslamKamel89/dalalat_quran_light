@@ -9,7 +9,6 @@ import 'package:dalalat_quran_light/models/sura_search_model.dart';
 import 'package:dalalat_quran_light/models/sura_search_result_model.dart';
 import 'package:dalalat_quran_light/models/word_model.dart';
 import 'package:dalalat_quran_light/utils/api_service/dio_consumer.dart';
-import 'package:dalalat_quran_light/utils/constants.dart';
 import 'package:dalalat_quran_light/utils/print_helper.dart';
 import 'package:dalalat_quran_light/utils/servicle_locator.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ final _t = "DataBaseHelper";
 
 class DataBaseHelper {
   final DioConsumer api = serviceLocator<DioConsumer>();
-  final String _baseUrl = "${domainUrl()}api/quran";
+  final String _baseUrl = "https://quran.safqauae.com/api/quran";
   // final String _baseUrl = "http://127.0.0.1:8000/api/quran";
   // final String _baseUrl = "http://10.0.2.2:8000/api/quran";
   static DataBaseHelper? _baseHelper;
