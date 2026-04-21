@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "491512389682",
+    "project_id": "dalalat-al-quran",
+    "storage_bucket": "dalalat-al-quran.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491512389682:android:cc2611143bec2d693c9c2b",
+        "android_client_info": {
+          "package_name": "com.dubdev.dalalat_quran_light"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN8_ISCDxwHxUCZqpGacgHJNGyp8n3hnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491512389682:android:f3f25f660e2918c33c9c2b",
+        "android_client_info": {
+          "package_name": "com.dubdev.dallalat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN8_ISCDxwHxUCZqpGacgHJNGyp8n3hnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491512389682:android:3aebe3e67a0f9ad83c9c2b",
+        "android_client_info": {
+          "package_name": "com.example.dlalat_quaran_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN8_ISCDxwHxUCZqpGacgHJNGyp8n3hnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
