@@ -8,6 +8,8 @@ class NotificationModel {
   int? pathId;
   String? createdAt;
   int? surah;
+  int? idAya;
+  int? page;
 
   NotificationModel({
     this.id,
@@ -17,11 +19,13 @@ class NotificationModel {
     this.pathId,
     this.createdAt,
     this.surah,
+    this.idAya,
+    this.page,
   });
 
   @override
   String toString() {
-    return 'NotificationModel(id: $id, path: $path, content: $content, type: $type, pathId: $pathId, createdAt: $createdAt, surah: $surah)';
+    return 'NotificationModel(id: $id, path: $path, content: $content, type: $type, pathId: $pathId, createdAt: $createdAt, surah: $surah , idAya: $idAya , page: $page)';
   }
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
@@ -44,6 +48,8 @@ class NotificationModel {
         pathId: toInt(json['path_id']),
         createdAt: json['created_at'] as String?,
         surah: toInt(json['surah']),
+        idAya: toInt(json['id_aya']),
+        page: toInt(json['page']),
       ),
       'NotificationModel.fromJson - parsed model',
     );
@@ -57,6 +63,8 @@ class NotificationModel {
     'path_id': pathId,
     'created_at': createdAt,
     'surah': surah,
+    'id_aya': idAya,
+    'page': page,
   };
 
   NotificationModel copyWith({
@@ -67,6 +75,8 @@ class NotificationModel {
     String? createdAt,
     int? surah,
     String? type,
+    int? idAya,
+    int? page,
   }) {
     return NotificationModel(
       id: id ?? this.id,
@@ -76,6 +86,8 @@ class NotificationModel {
       pathId: pathId ?? this.pathId,
       createdAt: createdAt ?? this.createdAt,
       surah: surah ?? this.surah,
+      idAya: idAya ?? this.idAya,
+      page: page ?? this.page,
     );
   }
 }

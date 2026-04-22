@@ -1,9 +1,14 @@
+import 'package:dalalat_quran_light/db/database_helper.dart';
 import 'package:dalalat_quran_light/features/notifications/models/notification_model.dart';
+import 'package:dalalat_quran_light/features/quran/entities/surah_entity.dart';
+import 'package:dalalat_quran_light/features/quran/presentation/quran_reader_view.dart';
+import 'package:dalalat_quran_light/features/quran/presentation/surah_list_view.dart';
 import 'package:dalalat_quran_light/ui/artice_details_screen.dart';
 import 'package:dalalat_quran_light/ui/articles_screen/articles_screen.dart';
 import 'package:dalalat_quran_light/ui/tag_details_screen.dart';
 import 'package:dalalat_quran_light/ui/tags_screen/tags_screen.dart';
 import 'package:dalalat_quran_light/utils/print_helper.dart';
+import 'package:dalalat_quran_light/widgets/explain_dialog.dart';
 import 'package:get/get.dart';
 
 Future onNotificationClick(NotificationModel model) async {
@@ -38,20 +43,22 @@ Future onNotificationClick(NotificationModel model) async {
     Get.to(const ArticleDetailsScreen(), transition: Transition.fadeIn, arguments: model.pathId);
   }
   if (model.path == 'ayats') {
-    // Get.toNamed(HomeSuraScreen.id);
-    // await _delay();
-    // var data = await DataBaseHelper.dataBaseInstance().getPageByAyahNumAndSuraNum(
-    //   model.pathId,
-    //   model.surah,
-    // );
-    // var page = data['page'];
-    // var id = data['id'];
-    // var suraAr = await DataBaseHelper.dataBaseInstance().getSuraById(model.surah.toString());
-    // Get.to(SuraScreen(), transition: Transition.fade, arguments: {'page': '$page'});
-    // await _delay();
-    // Get.dialog(
-    //   ExplainDialog(ayaKey: "$id", videoId: '', suraName: suraAr, ayaNumber: model.pathId),
-    // );
+    Get.to(() => SurahListView());
+    await _delay();
+    var page = model.page;
+    var id = model.idAya;
+    if ([page, id].contains(null)) return;
+    var suraAr = await DataBaseHelper.dataBaseInstance().getSuraById(model.surah.toString());
+    Get.to(
+      () => QuranReaderView(
+        surah: SurahEntity(id: -1, name: suraAr, startPage: page ?? -1),
+      ),
+    );
+
+    await _delay();
+    Get.dialog(
+      ExplainDialog(ayaKey: "$id", videoId: '', suraName: suraAr, ayaNumber: model.pathId),
+    );
   }
 }
 

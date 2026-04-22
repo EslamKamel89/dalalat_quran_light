@@ -46,3 +46,4 @@ app.*.map.json
 /android/app/release
 /lib/env.dart
 AuthKey_3C8Y7G58G5.p8
+upload-keystore.jks

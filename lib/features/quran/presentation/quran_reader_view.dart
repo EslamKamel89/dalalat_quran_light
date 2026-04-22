@@ -79,7 +79,7 @@ class _QuranReaderViewState extends State<QuranReaderView> {
             },
           ),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: primaryColor,
+            backgroundColor: primaryColor.withOpacity(0.7),
             onPressed: () {
               controller.fetchAyatForCurrentPage();
               _showAyatBottomSheet(context, controller);
@@ -166,10 +166,11 @@ class _QuranPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return Container(
+      padding: EdgeInsets.only(top: 2, right: 3, left: 3, bottom: 25),
       child: CachedNetworkImage(
         imageUrl: pageUrl,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
         fadeInDuration: Duration.zero,
         fadeOutDuration: Duration.zero,
         placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
