@@ -99,8 +99,9 @@ Future<void> _ensureAndroidNotificationPermission() async {
 
 Future<void> _createAndroidNotificationChannel() async {
   try {
-    final androidImpl = flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+    final androidImpl =
+        flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
     if (androidImpl != null) {
       await androidImpl.createNotificationChannel(channel);
       pr('Android notification channel created: ${channel.id}', 'FCM');
@@ -157,11 +158,18 @@ void setupForegroundMessageHandler() {
       );
       final payloadJson = jsonEncode(message.data);
       if (notification != null) {
+        // flutterLocalNotificationsPlugin.show(
+        //   id: notification.hashCode,
+        //   title: notification.title,
+        //   body: notification.body,
+        //   notificationDetails: notificationDetails,
+        //   payload: payloadJson,
+        // );
         flutterLocalNotificationsPlugin.show(
-          id: notification.hashCode,
-          title: notification.title,
-          body: notification.body,
-          notificationDetails: notificationDetails,
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          notificationDetails,
           payload: payloadJson,
         );
         return;
@@ -235,7 +243,8 @@ Future notificationsInit() async {
   );
 
   await flutterLocalNotificationsPlugin.initialize(
-    settings: initializationSettings,
+    initializationSettings,
+    // settings: initializationSettings,
     onDidReceiveNotificationResponse: onDidReceiveLocalNotificationResponse,
   );
   if (Platform.isAndroid) {
