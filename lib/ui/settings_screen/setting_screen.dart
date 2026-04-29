@@ -3,13 +3,11 @@ import 'dart:developer';
 import 'package:dalalat_quran_light/controllers/read_aya_controller.dart';
 import 'package:dalalat_quran_light/controllers/settings_controller.dart';
 import 'package:dalalat_quran_light/dialogs/custom_snack_bar.dart';
-import 'package:dalalat_quran_light/features/our_work/presentation/our_work_screen.dart';
 import 'package:dalalat_quran_light/models/language_model.dart';
 import 'package:dalalat_quran_light/ui/settings_screen/widgets/about_button.dart';
 import 'package:dalalat_quran_light/ui/settings_screen/widgets/share_and_update_settings_card.dart';
 import 'package:dalalat_quran_light/utils/colors.dart';
 import 'package:dalalat_quran_light/utils/constants.dart';
-import 'package:dalalat_quran_light/utils/current_locales.dart';
 import 'package:dalalat_quran_light/utils/servicle_locator.dart';
 import 'package:dalalat_quran_light/widgets/custom_buttons.dart';
 import 'package:dalalat_quran_light/widgets/font_text.dart';
@@ -243,36 +241,36 @@ class SettingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (isArabic())
-                    Container(
-                      height: 60,
-                      width: Get.width / 1.5,
-                      margin: const EdgeInsets.only(top: 15, left: 50, right: 50),
-                      child: PrimaryButton(
-                        onPressed: () {
-                          Get.to(() => OurWorkScreen());
-                        },
-                        borderRadius: 0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.apps, color: Colors.white),
-                            const SizedBox(width: 10),
-                            Text(
-                              "our_work".tr,
-                              textScaleFactor: 1.0,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Almarai',
-                                height: 1.5,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
 
+                  // if (isArabic())
+                  //   Container(
+                  //     height: 60,
+                  //     width: Get.width / 1.5,
+                  //     margin: const EdgeInsets.only(top: 15, left: 50, right: 50),
+                  //     child: PrimaryButton(
+                  //       onPressed: () {
+                  //         Get.to(() => OurWorkScreen());
+                  //       },
+                  //       borderRadius: 0,
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: [
+                  //           const Icon(Icons.apps, color: Colors.white),
+                  //           const SizedBox(width: 10),
+                  //           Text(
+                  //             "our_work".tr,
+                  //             textScaleFactor: 1.0,
+                  //             style: const TextStyle(
+                  //               color: Colors.white,
+                  //               fontFamily: 'Almarai',
+                  //               height: 1.5,
+                  //               fontSize: 15,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
                   AboutButton(),
 
                   // Obx(() => AlMaraiText(12, 'آخر تحديث ${controller.lastSyncDate.value}')),

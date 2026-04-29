@@ -1,6 +1,7 @@
 import 'package:dalalat_quran_light/controllers/correct_word_controller.dart';
 import 'package:dalalat_quran_light/controllers/similar_word_controller.dart';
 import 'package:dalalat_quran_light/features/chat/presentation/chat_screen.dart';
+import 'package:dalalat_quran_light/features/grammer_rules/presentation/views/grammer_rules_view.dart';
 import 'package:dalalat_quran_light/features/notifications/presentation/widgets/notifications_button.dart';
 import 'package:dalalat_quran_light/features/quran/presentation/surah_list_view.dart';
 import 'package:dalalat_quran_light/features/words/presentation/reference_view.dart';
@@ -404,23 +405,24 @@ class QuestionAndResearchWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap: () {
-                  openAppStoreLink('inheritance');
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      height: size,
-                      width: size,
-                      alignment: Alignment.center,
-                      child: Image.asset(AssetsData.inheritanceIcon, fit: BoxFit.cover),
-                    ),
-                    SizedBox(height: 5),
-                    ArabicText("inheritance".tr, color: Colors.white, fontSize: fontSize),
-                  ],
+              if (false)
+                GestureDetector(
+                  onTap: () {
+                    openAppStoreLink('inheritance');
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        height: size,
+                        width: size,
+                        alignment: Alignment.center,
+                        child: Image.asset(AssetsData.inheritanceIcon, fit: BoxFit.cover),
+                      ),
+                      SizedBox(height: 5),
+                      ArabicText("inheritance".tr, color: Colors.white, fontSize: fontSize),
+                    ],
+                  ),
                 ),
-              ),
               GestureDetector(
                 onTap: () {
                   // Get.toNamed(ChatScreen.id);
@@ -462,12 +464,32 @@ class QuestionAndResearchWidget extends StatelessWidget {
                   ],
                 ),
               ),
+              if (false)
+                GestureDetector(
+                  onTap: () {
+                    openAppStoreLink('calender');
+
+                    // Navigator.of(context).pushNamed(CompetitionsScreen.id);
+                    // // Navigator.of(context).pushNamed(GrammarRulesView.id);
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        height: size,
+                        width: size,
+                        alignment: Alignment.center,
+                        child: Image.asset(AssetsData.islamicCalenderLogo, fit: BoxFit.cover),
+                      ),
+                      SizedBox(height: 5),
+                      ArabicText("islamic_calendar".tr, color: Colors.white, fontSize: fontSize),
+                    ],
+                  ),
+                ),
+
               GestureDetector(
                 onTap: () {
-                  openAppStoreLink('calender');
-
                   // Navigator.of(context).pushNamed(CompetitionsScreen.id);
-                  // // Navigator.of(context).pushNamed(GrammarRulesView.id);
+                  Navigator.of(context).pushNamed(GrammarRulesView.id);
                 },
                 child: Column(
                   children: [
@@ -475,35 +497,18 @@ class QuestionAndResearchWidget extends StatelessWidget {
                       height: size,
                       width: size,
                       alignment: Alignment.center,
-                      child: Image.asset(AssetsData.islamicCalenderLogo, fit: BoxFit.cover),
+                      child: Image.asset(AssetsData.researchIcon3, fit: BoxFit.cover),
+                      // child: Image.asset(AssetsData.logoNav, fit: BoxFit.cover),
+                      // child: Image.asset(AssetsData.logoSmall, fit: BoxFit.cover),
                     ),
                     SizedBox(height: 5),
-                    ArabicText("islamic_calendar".tr, color: Colors.white, fontSize: fontSize),
+                    ArabicText("قواعد لسانية", color: Colors.white, fontSize: fontSize),
+
+                    // ArabicText("سؤالٌ وجواب", color: Colors.white, fontSize: fontSize),
+                    // ArabicText("اسئلة تبحث عن اجوبه", color: Colors.white, fontSize: fontSize),
                   ],
                 ),
               ),
-
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.of(context).pushNamed(CompetitionsScreen.id);
-              //     // Navigator.of(context).pushNamed(GrammarRulesView.id);
-              //   },
-              //   child: Column(
-              //     children: [
-              //       Container(
-              //         height: size,
-              //         width: size,
-              //         alignment: Alignment.center,
-              //         child: Image.asset(AssetsData.researchIcon3, fit: BoxFit.cover),
-              //         // child: Image.asset(AssetsData.logoNav, fit: BoxFit.cover),
-              //         // child: Image.asset(AssetsData.logoSmall, fit: BoxFit.cover),
-              //       ),
-              //       SizedBox(height: 5),
-              //       // ArabicText("سؤالٌ وجواب", color: Colors.white, fontSize: fontSize),
-              //       ArabicText("اسئلة تبحث عن اجوبه", color: Colors.white, fontSize: fontSize),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),
