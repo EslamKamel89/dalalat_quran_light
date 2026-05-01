@@ -1,6 +1,5 @@
 import 'package:dalalat_quran_light/controllers/correct_word_controller.dart';
 import 'package:dalalat_quran_light/controllers/similar_word_controller.dart';
-import 'package:dalalat_quran_light/features/chat/presentation/chat_screen.dart';
 import 'package:dalalat_quran_light/features/grammer_rules/presentation/views/grammer_rules_view.dart';
 import 'package:dalalat_quran_light/features/notifications/presentation/widgets/notifications_button.dart';
 import 'package:dalalat_quran_light/features/quran/presentation/surah_list_view.dart';
@@ -91,7 +90,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 70),
+                  SizedBox(height: 100),
                   Transform.translate(
                     offset: Offset(0, 0),
                     child: Transform.scale(
@@ -108,7 +107,9 @@ class _IntroScreenState extends State<IntroScreen> {
                               height: itemSize - 20,
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(ChatScreen.id);
+                                  // Get.toNamed(ChatScreen.id);
+                                  Get.to(() => ReferenceView());
+
                                   // Get.toNamed(HomeSuraScreen.id);
                                 },
                               ),
@@ -165,8 +166,8 @@ class _IntroScreenState extends State<IntroScreen> {
                               width: itemSize - 20,
                               height: itemSize - 20,
                               child: GestureDetector(
-                                onTap: () =>
-                                    Get.to(const VideosScreen(), transition: Transition.fade),
+                                onTap:
+                                    () => Get.to(const VideosScreen(), transition: Transition.fade),
                               ),
                             ),
                           ),
@@ -198,7 +199,7 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
             ),
           ),
-          QuestionAndResearchWidget(),
+          // QuestionAndResearchWidget(),
         ],
       );
     }
@@ -249,7 +250,9 @@ class _IntroScreenState extends State<IntroScreen> {
                                 height: 10.vh,
                                 child: GestureDetector(
                                   onTap: () {
-                                    Get.toNamed(ChatScreen.id);
+                                    Get.to(() => ReferenceView());
+
+                                    // Get.toNamed(ChatScreen.id);
                                   },
                                 ),
                               ),
@@ -308,8 +311,8 @@ class _IntroScreenState extends State<IntroScreen> {
                               width: 20.vw,
                               height: 10.vh,
                               child: GestureDetector(
-                                onTap: () =>
-                                    Get.to(const VideosScreen(), transition: Transition.fade),
+                                onTap:
+                                    () => Get.to(const VideosScreen(), transition: Transition.fade),
                               ),
                             ),
                           ),
@@ -340,7 +343,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
               ),
             ),
-            QuestionAndResearchWidget(),
+            // QuestionAndResearchWidget(),
           ],
         );
       },
