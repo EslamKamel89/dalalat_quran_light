@@ -109,11 +109,11 @@ class _VerseCardState extends State<VerseCard> {
                     );
                   }),
                 ).animate(onPlay: (c) => c.repeat()).shimmer(duration: 1000.ms),
-              if (!loading)
-                RichText(
-                  textAlign: TextAlign.start,
-                  text: TextSpan(children: ayaText(), style: DefaultTextStyle.of(context).style),
-                ),
+              if (!loading) Text(widget.verse.verseText ?? ''),
+              // RichText(
+              //   textAlign: TextAlign.start,
+              //   text: TextSpan(children: ayaText(), style: DefaultTextStyle.of(context).style),
+              // ),
               const SizedBox(height: 12),
             ],
           ),

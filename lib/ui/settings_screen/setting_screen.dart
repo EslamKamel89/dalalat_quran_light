@@ -15,7 +15,6 @@ import 'package:dalalat_quran_light/widgets/font_type_radio.dart';
 import 'package:dalalat_quran_light/widgets/quran_toolbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum FontType { normal, bold }
@@ -144,71 +143,6 @@ class SettingScreen extends StatelessWidget {
                   //       )),
                   const SizedBox(height: 20),
                   ShareAndUpdateSettingsCard(),
-                  const SizedBox(height: 50),
-                  Container(
-                    height: 60,
-                    width: Get.width / 1.5,
-                    margin: const EdgeInsets.only(top: 15, left: 50, right: 50),
-                    child: PrimaryButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('مشاركة التطبيق'),
-                              actions: [
-                                // Share Button
-                                IconButton(
-                                  onPressed: () {
-                                    SharePlus.instance.share(
-                                      ShareParams(
-                                        text:
-                                            'https://apps.apple.com/us/app/%D8%AF%D9%84%D8%A7%D9%84%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%B1%D8%A2%D9%86/id6736754081',
-                                      ),
-                                    );
-                                  },
-                                  icon: const Icon(Icons.apple, size: 30, color: primaryColor),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    SharePlus.instance.share(
-                                      ShareParams(
-                                        text:
-                                            'https://play.google.com/store/apps/details?id=com.dubdev.dallalat&pli=1',
-                                      ),
-                                    );
-                                  },
-                                  icon: const Icon(Icons.android, size: 30, color: primaryColor),
-                                ),
-                                // IconButton(
-                                //   onPressed: () {},
-                                //   icon: const Icon(Icons.cancel, size: 30, color: primaryColor),
-                                // ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      borderRadius: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.share, color: Colors.white),
-                          const SizedBox(width: 10),
-                          Text(
-                            "share_app".tr,
-                            textScaleFactor: 1.0,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Almarai',
-                              height: 1.5,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
 
                   Container(
                     height: 60,
@@ -302,20 +236,21 @@ class _LanguageSpinnerState extends State<LanguageSpinner> {
     );
     return DropdownButton<LanguageModel?>(
       value: modes[widget.controller.lanIndex()],
-      items: modes.map<DropdownMenuItem<LanguageModel?>>((LanguageModel? value) {
-        return DropdownMenuItem<LanguageModel?>(
-          value: value,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 5, right: 5),
-            child: Row(
-              children: [
-                Image.asset(value!.langFlag, height: 30, width: 40),
-                AlMaraiText(0, value.langName),
-              ],
-            ),
-          ),
-        );
-      }).toList(),
+      items:
+          modes.map<DropdownMenuItem<LanguageModel?>>((LanguageModel? value) {
+            return DropdownMenuItem<LanguageModel?>(
+              value: value,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: Row(
+                  children: [
+                    Image.asset(value!.langFlag, height: 30, width: 40),
+                    AlMaraiText(0, value.langName),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
       onChanged: (value) {
         setState(() {
           // val = value!;
@@ -345,17 +280,16 @@ class _RecitersSpinnerState extends State<RecitersSpinner> {
   Widget build(BuildContext context) {
     return DropdownButton<ReaderName>(
       value: readAyaController.readerName,
-      items: readAyaController.readersList.map<DropdownMenuItem<ReaderName>>((
-        ReaderName readerName,
-      ) {
-        return DropdownMenuItem<ReaderName>(
-          value: readerName,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 5, right: 5),
-            child: AlMaraiText(0, readerName.displayName()),
-          ),
-        );
-      }).toList(),
+      items:
+          readAyaController.readersList.map<DropdownMenuItem<ReaderName>>((ReaderName readerName) {
+            return DropdownMenuItem<ReaderName>(
+              value: readerName,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: AlMaraiText(0, readerName.displayName()),
+              ),
+            );
+          }).toList(),
       onChanged: (value) {
         if (value != null) {
           readAyaController.readerName = value;

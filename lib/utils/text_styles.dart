@@ -1,18 +1,15 @@
-import 'package:dalalat_quran_light/controllers/settings_controller.dart';
-import 'package:dalalat_quran_light/ui/settings_screen/setting_screen.dart';
-import 'package:dalalat_quran_light/utils/calc_font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Map<String, Style> mainHtmlStyle() => {
   '#': Style(
     fontFamily: "Amiri",
     textAlign: TextAlign.justify,
-    fontSize: Get.find<SettingsController>().fontTypeEnum == FontType.normal
-        ? FontSize(calcFontSize(14))
-        : FontSize(calcFontSize(18)),
+    // fontSize:
+    //     Get.find<SettingsController>().fontTypeEnum == FontType.normal
+    //         ? FontSize(calcFontSize(14))
+    //         : FontSize(calcFontSize(18)),
     padding: HtmlPaddings(left: HtmlPadding(0), right: HtmlPadding(0)),
     margin: Margins(left: Margin(0), right: Margin(0)),
     //   color: primaryColor,
@@ -27,10 +24,7 @@ class DefaultText extends StatelessWidget {
   final Color color;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      txt,
-      style: TextStyle(fontSize: fontSize, fontFamily: "Almarai", color: color),
-    );
+    return Text(txt, style: TextStyle(fontSize: fontSize, fontFamily: "Almarai", color: color));
   }
 }
 

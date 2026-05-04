@@ -107,206 +107,208 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
         return Scaffold(
           appBar: QuranBar(articleModel?.name ?? ''),
           backgroundColor: lightGray2,
-          body: articleModel != null
-              ? Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    border: Border.all(color: lightGray2, width: 1),
-                  ),
-                  margin: const EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(Radius.circular(15)),
-                            border: Border.all(color: lightGray2, width: 1),
-                          ),
-                          margin: const EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 10),
-                          child: SingleChildScrollView(
+          body:
+              articleModel != null
+                  ? Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      border: Border.all(color: lightGray2, width: 1),
+                    ),
+                    margin: const EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
                             padding: const EdgeInsets.all(8),
-                            controller: _scrollController,
-                            child: Container(
-                              margin: const EdgeInsetsDirectional.only(start: 20, end: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          articleModel?.name ?? '',
-                                          softWrap: true,
-                                          overflow: TextOverflow.visible,
-                                          textAlign: TextAlign.start,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: primaryColor,
-                                            fontSize: 18,
-                                            fontFamily: 'Almarai',
-                                          ),
-                                        ),
-                                      ),
-                                      // Spacer(),
-                                      IconButton(
-                                        onPressed: () {
-                                          // String shareContent =
-                                          //     ' ${articleModel?.name ?? ''}';
-                                          // shareContent =
-                                          //     '$shareContent\n-------------------------';
-                                          // shareContent =
-                                          // '$shareContent\n${articleModel?.descriptionWithNoTags() ?? ''}';
-                                          // Share.share(
-                                          //   shareContent,
-                                          //   subject:
-                                          //       ' ${articleModel?.name ?? ''}',
-                                          // );
-                                          ShareUtil.share(
-                                            header: articleModel?.name ?? '',
-                                            content: articleModel?.description ?? '',
-                                            subject: articleModel?.name ?? '',
-                                          );
-                                        },
-                                        icon: const Icon(Icons.share, color: primaryColor),
-                                      ),
-                                    ],
-                                  ),
-
-                                  Html(
-                                    data: cleanHtml(articleModel?.description ?? ''),
-                                    style: mainHtmlStyle(),
-                                  ),
-                                  GetBuilder<GetDownloadLinkController>(
-                                    builder: (_) {
-                                      if (downloadLink != null) {
-                                        return TextButton(
-                                          onPressed: () {
-                                            launchUrl(Uri.parse(downloadLink!));
-                                          },
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.all(Radius.circular(15)),
+                              border: Border.all(color: lightGray2, width: 1),
+                            ),
+                            margin: const EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 10),
+                            child: SingleChildScrollView(
+                              padding: const EdgeInsets.all(8),
+                              controller: _scrollController,
+                              child: Container(
+                                margin: const EdgeInsetsDirectional.only(start: 20, end: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
                                           child: Text(
-                                            'أقرا المزيد',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.normal,
-                                              color: Colors.black,
-                                              fontSize:
-                                                  Get.find<SettingsController>().fontTypeEnum ==
-                                                      FontType.normal
-                                                  ? 14
-                                                  : 18,
+                                            articleModel?.name ?? '',
+                                            softWrap: true,
+                                            overflow: TextOverflow.visible,
+                                            textAlign: TextAlign.start,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: primaryColor,
+                                              fontSize: 18,
                                               fontFamily: 'Almarai',
                                             ),
                                           ),
-                                        );
-                                      } else {
-                                        return const SizedBox();
-                                      }
-                                    },
-                                  ),
-
-                                  if (articleModel?.description != null &&
-                                      _isScrollable &&
-                                      _showFeedback)
-                                    FeedbackTextWidget(
-                                      horizontalPadding: 20,
-                                      onTap: () {
-                                        Get.toNamed(
-                                          AddCommentView.id,
-                                          arguments: {
-                                            "id": articleModel?.id,
-                                            'commentType': 'article',
+                                        ),
+                                        // Spacer(),
+                                        IconButton(
+                                          onPressed: () {
+                                            // String shareContent =
+                                            //     ' ${articleModel?.name ?? ''}';
+                                            // shareContent =
+                                            //     '$shareContent\n-------------------------';
+                                            // shareContent =
+                                            // '$shareContent\n${articleModel?.descriptionWithNoTags() ?? ''}';
+                                            // Share.share(
+                                            //   shareContent,
+                                            //   subject:
+                                            //       ' ${articleModel?.name ?? ''}',
+                                            // );
+                                            ShareUtil.share(
+                                              header: articleModel?.name ?? '',
+                                              content: articleModel?.description ?? '',
+                                              subject: articleModel?.name ?? '',
+                                            );
                                           },
-                                        );
+                                          icon: const Icon(Icons.share, color: primaryColor),
+                                        ),
+                                      ],
+                                    ),
+
+                                    Html(
+                                      data: cleanHtml(articleModel?.description ?? ''),
+                                      style: mainHtmlStyle(),
+                                    ),
+                                    GetBuilder<GetDownloadLinkController>(
+                                      builder: (_) {
+                                        if (downloadLink != null) {
+                                          return TextButton(
+                                            onPressed: () {
+                                              launchUrl(Uri.parse(downloadLink!));
+                                            },
+                                            child: Text(
+                                              'أقرا المزيد',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                color: Colors.black,
+                                                fontSize:
+                                                    Get.find<SettingsController>().fontTypeEnum ==
+                                                            FontType.normal
+                                                        ? 14
+                                                        : 18,
+                                                fontFamily: 'Almarai',
+                                              ),
+                                            ),
+                                          );
+                                        } else {
+                                          return const SizedBox();
+                                        }
                                       },
                                     ),
-                                ],
+
+                                    if (articleModel?.description != null &&
+                                        _isScrollable &&
+                                        _showFeedback)
+                                      FeedbackTextWidget(
+                                        horizontalPadding: 20,
+                                        onTap: () {
+                                          Get.toNamed(
+                                            AddCommentView.id,
+                                            arguments: {
+                                              "id": articleModel?.id,
+                                              'commentType': 'article',
+                                            },
+                                          );
+                                        },
+                                      ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      if (articleModel?.description != null && !_isScrollable && _showFeedback)
-                        FeedbackTextWidget(
-                          horizontalPadding: 20,
-                          onTap: () {
-                            Get.toNamed(
-                              AddCommentView.id,
-                              arguments: {"id": articleModel?.id, 'commentType': 'article'},
+                        if (articleModel?.description != null && !_isScrollable && _showFeedback)
+                          FeedbackTextWidget(
+                            horizontalPadding: 20,
+                            onTap: () {
+                              Get.toNamed(
+                                AddCommentView.id,
+                                arguments: {"id": articleModel?.id, 'commentType': 'article'},
+                              );
+                            },
+                          ),
+                        GetBuilder<ArticlesDetailsController>(
+                          builder: (_) {
+                            return Visibility(
+                              visible: ArticleDetailsData.relatedArticles.isNotEmpty,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'read_also'.tr,
+                                      style: const TextStyle(
+                                        color: primaryColor,
+                                        fontFamily: "Almarai",
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    margin: const EdgeInsets.only(bottom: 8),
+                                    padding: const EdgeInsets.only(left: 3, right: 3),
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: ArticleDetailsData.relatedArticles.length,
+                                      itemBuilder: (context, index) {
+                                        return ElevatedButton(
+                                          onPressed: () {
+                                            Get.to(
+                                              const ArticleDetailsScreen(),
+                                              transition: Transition.fade,
+                                              arguments:
+                                                  ArticleDetailsData.relatedArticles[index].id,
+                                              preventDuplicates: false,
+                                            );
+                                          },
+
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor: Colors.blueGrey,
+                                            backgroundColor: Colors.white,
+                                            padding: EdgeInsets.zero,
+                                            elevation: 2,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 10,
+                                              horizontal: 15,
+                                            ),
+                                            child: Text(
+                                              ArticleDetailsData.relatedArticles[index].name,
+                                              style: const TextStyle(fontFamily: 'Almarai'),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
                             );
                           },
                         ),
-                      GetBuilder<ArticlesDetailsController>(
-                        builder: (_) {
-                          return Visibility(
-                            visible: ArticleDetailsData.relatedArticles.isNotEmpty,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'read_also'.tr,
-                                    style: const TextStyle(
-                                      color: primaryColor,
-                                      fontFamily: "Almarai",
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 40,
-                                  margin: const EdgeInsets.only(bottom: 8),
-                                  padding: const EdgeInsets.only(left: 3, right: 3),
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: ArticleDetailsData.relatedArticles.length,
-                                    itemBuilder: (context, index) {
-                                      return ElevatedButton(
-                                        onPressed: () {
-                                          Get.to(
-                                            const ArticleDetailsScreen(),
-                                            transition: Transition.fade,
-                                            arguments: ArticleDetailsData.relatedArticles[index].id,
-                                            preventDuplicates: false,
-                                          );
-                                        },
-
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor: Colors.blueGrey,
-                                          backgroundColor: Colors.white,
-                                          padding: EdgeInsets.zero,
-                                          elevation: 2,
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 10,
-                                            horizontal: 15,
-                                          ),
-                                          child: Text(
-                                            ArticleDetailsData.relatedArticles[index].name,
-                                            style: const TextStyle(fontFamily: 'Almarai'),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                )
-              : _getArticleController.responseState == ResponseEnum.loading
-              ? const Center(child: CircularProgressIndicator())
-              : const Center(child: DefaultText('نأسف لحدوث خطا, نرجو المحاولة في وقت لاحق ')),
+                      ],
+                    ),
+                  )
+                  : _getArticleController.responseState == ResponseEnum.loading
+                  ? const Center(child: CircularProgressIndicator())
+                  : const Center(child: DefaultText('نأسف لحدوث خطا, نرجو المحاولة في وقت لاحق ')),
         );
       },
     );
