@@ -9,7 +9,8 @@ import 'package:get/get.dart';
 class QuranBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final void Function()? backCallback;
-  const QuranBar(this.title, {super.key, this.backCallback});
+  final double? height;
+  const QuranBar(this.title, {super.key, this.backCallback, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +21,12 @@ class QuranBar extends StatelessWidget implements PreferredSizeWidget {
           bottomRight: Radius.circular(30),
         ),
       ),
-      title: Text(
-        title,
-        style: const TextStyle(color: Colors.white, fontFamily: 'Almarai'),
-      ),
+      title: Text(title, style: const TextStyle(color: Colors.white, fontFamily: 'Almarai')),
       centerTitle: true,
-      leading: backCallback == null
-          ? null
-          : IconButton(onPressed: backCallback, icon: const Icon(Icons.arrow_back_ios)),
+      leading:
+          backCallback == null
+              ? null
+              : IconButton(onPressed: backCallback, icon: const Icon(Icons.arrow_back_ios)),
       flexibleSpace: Stack(
         children: [
           Container(
@@ -39,7 +38,7 @@ class QuranBar extends StatelessWidget implements PreferredSizeWidget {
                 bottomRight: Radius.circular(15),
               ),
             ),
-            height: 120,
+            height: height ?? 120,
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: Image.asset(toolBarBackImage, fit: BoxFit.cover),
@@ -87,5 +86,5 @@ class QuranBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size(Get.width, isSmallScreen ? 50 : 60);
+  Size get preferredSize => Size(Get.width, height ?? (isSmallScreen ? 50 : 60));
 }

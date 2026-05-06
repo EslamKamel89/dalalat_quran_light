@@ -5,6 +5,7 @@ import 'package:dalalat_quran_light/features/quran/presentation/widgets/ayah_car
 import 'package:dalalat_quran_light/ui/dialog_word_tag.dart';
 import 'package:dalalat_quran_light/utils/colors.dart';
 import 'package:dalalat_quran_light/utils/response_state_enum.dart';
+import 'package:dalalat_quran_light/utils/text_styles.dart';
 import 'package:dalalat_quran_light/widgets/explain_dialog.dart';
 import 'package:dalalat_quran_light/widgets/quran_toolbar.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _QuranReaderViewState extends State<QuranReaderView> {
       builder: (controller) {
         return Scaffold(
           backgroundColor: lightGray2,
-          appBar: QuranBar('سورة ${controller.currentSurah.name}'),
+          appBar: QuranBar('سورة ${controller.currentSurah.name}', height: Get.height * 0.15),
           body: Builder(
             builder: (context) {
               switch (controller.pages.response) {
@@ -78,13 +79,32 @@ class _QuranReaderViewState extends State<QuranReaderView> {
               }
             },
           ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: primaryColor.withOpacity(0.7),
-            onPressed: () {
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: InkWell(
+            // backgroundColor: primaryColor.withOpacity(0.7),
+            onTap: () {
               controller.fetchAyatForCurrentPage();
               _showAyatBottomSheet(context, controller);
             },
-            child: const Icon(Icons.menu_book, color: Colors.white),
+            child: Container(
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+              ),
+              padding: EdgeInsets.only(top: 10, bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  ArabicText('التفسير و الكلمات الدلالية', color: Colors.white),
+                  SizedBox(width: 10),
+                  const Icon(Icons.menu_book, color: Colors.white),
+                ],
+              ),
+            ),
           ).animate().scale(duration: 300.ms),
         );
       },
@@ -167,15 +187,16 @@ class _QuranPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 2, right: 3, left: 3, bottom: 25),
+      padding: EdgeInsets.only(bottom: 70),
+      // color: primaryColor.withOpacity(0.5),
       child: CachedNetworkImage(
         imageUrl: pageUrl,
         fit: BoxFit.fill,
         fadeInDuration: Duration.zero,
         fadeOutDuration: Duration.zero,
         placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-        errorWidget: (context, url, error) =>
-            const Center(child: Icon(Icons.error, color: Colors.red)),
+        errorWidget:
+            (context, url, error) => const Center(child: Icon(Icons.error, color: Colors.red)),
       ),
     );
   }
