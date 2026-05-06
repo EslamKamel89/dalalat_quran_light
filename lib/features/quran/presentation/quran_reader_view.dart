@@ -42,7 +42,7 @@ class _QuranReaderViewState extends State<QuranReaderView> {
       builder: (controller) {
         return Scaffold(
           backgroundColor: lightGray2,
-          appBar: QuranBar('سورة ${controller.currentSurah.name}', height: Get.height * 0.15),
+          appBar: QuranBar('سورة ${controller.currentSurah.name}'),
           body: Builder(
             builder: (context) {
               switch (controller.pages.response) {
@@ -187,8 +187,9 @@ class _QuranPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 70),
+      padding: EdgeInsets.only(bottom: 90, top: 10),
       // color: primaryColor.withOpacity(0.5),
+      // color: Colors.red,
       child: CachedNetworkImage(
         imageUrl: pageUrl,
         fit: BoxFit.fill,
