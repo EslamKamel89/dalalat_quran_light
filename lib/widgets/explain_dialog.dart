@@ -49,6 +49,7 @@ class _ExplainDialogState extends State<ExplainDialog> {
   final ExplanationController explanationController = Get.find<ExplanationController>();
   String? downloadLink;
   String? explanation;
+  String? ayahText;
   final ScrollController _scrollController = ScrollController();
   bool _isScrollable = false;
   bool _showFeedback = false;
@@ -66,7 +67,8 @@ class _ExplainDialogState extends State<ExplainDialog> {
         .getDownloadlink(downloadLinkType: DownloadLinkType.ayah, id: widget.ayaKey)
         .then((value) => downloadLink = value);
     explanationController.getExplanation(id: widget.ayaKey).then((value) {
-      explanation = value;
+      explanation = value['explanation'];
+      ayahText = value['text_ar'];
     });
     _scrollController.addListener(_updateScrollableFlag);
 
@@ -151,55 +153,48 @@ class _ExplainDialogState extends State<ExplainDialog> {
                     margin: const EdgeInsets.only(top: 15, bottom: 15),
                   ),
                   const SizedBox(height: 5),
-                  Obx(
-                    () => Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          child: Text(
-                            _dialogController.ayaText.value.toLowerCase() != 'null'
-                                ? _dialogController.ayaText.value
-                                : '',
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              fontFamily: "me_quran",
-                              color: primaryColor,
-                              fontSize: calcFontSize(15),
-                            ),
-                          ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        child: GetBuilder<ExplanationController>(
+                          builder: (context) {
+                            return ArabicText(ayahText ?? '', textAlign: TextAlign.justify);
+                          },
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: IconButton(
-                            onPressed: () {
-                              // String shareContent =
-                              //     _dialogController.ayaText.value;
-                              // shareContent =
-                              //     '$shareContent\nتفسير الأية رقم ${formatArabicNumber(widget.ayaNumber) ?? ''} في ${widget.suraName!}\n';
-                              // shareContent =
-                              //     '$shareContent\n${DataBaseHelper.dataBaseInstance().parseHtmlString(explanation ?? '')}';
-                              // Share.share(
-                              //   shareContent,
-                              //   subject:
-                              //       'تفسير الأية رقم ${formatArabicNumber(widget.ayaNumber) ?? ''} في ${widget.suraName!}',
-                              // );
-                              String header = _dialogController.ayaText.value;
-                              header =
-                                  '$header\nتفسير الأية رقم ${formatArabicNumber(widget.ayaNumber) ?? ''} في ${widget.suraName!}\n';
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                          onPressed: () {
+                            // String shareContent =
+                            //     _dialogController.ayaText.value;
+                            // shareContent =
+                            //     '$shareContent\nتفسير الأية رقم ${formatArabicNumber(widget.ayaNumber) ?? ''} في ${widget.suraName!}\n';
+                            // shareContent =
+                            //     '$shareContent\n${DataBaseHelper.dataBaseInstance().parseHtmlString(explanation ?? '')}';
+                            // Share.share(
+                            //   shareContent,
+                            //   subject:
+                            //       'تفسير الأية رقم ${formatArabicNumber(widget.ayaNumber) ?? ''} في ${widget.suraName!}',
+                            // );
+                            String header = _dialogController.ayaText.value;
+                            header =
+                                '$header\nتفسير الأية رقم ${formatArabicNumber(widget.ayaNumber) ?? ''} في ${widget.suraName!}\n';
 
-                              ShareUtil.share(
-                                header: header,
-                                content: explanation ?? '',
-                                subject: header,
-                              );
-                            },
-                            icon: const Icon(Icons.share, color: primaryColor),
-                          ),
+                            ShareUtil.share(
+                              header: header,
+                              content: explanation ?? '',
+                              subject: header,
+                            );
+                          },
+                          icon: const Icon(Icons.share, color: primaryColor),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+
                   Expanded(
                     flex: 1,
                     child: Scrollbar(

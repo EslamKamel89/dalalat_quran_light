@@ -5,6 +5,7 @@ import 'package:dalalat_quran_light/utils/api_service/dio_consumer.dart';
 import 'package:dalalat_quran_light/utils/constants.dart';
 import 'package:dalalat_quran_light/utils/print_helper.dart';
 import 'package:dalalat_quran_light/utils/response_state_enum.dart';
+import 'package:dalalat_quran_light/utils/safe_string_map.dart';
 import 'package:dalalat_quran_light/utils/servicle_locator.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +17,7 @@ class ExplanationController extends GetxController {
   ResponseEnum responseState = ResponseEnum.initial;
   final DioConsumer dioConsumer;
   ExplanationController({this.explanation, required this.dioConsumer});
-  Future<String?> getExplanation({required String id}) async {
+  Future<Map<String, String>> getExplanation({required String id}) async {
     const t = 'getExplanation - ExplanationController ';
     String path = _domainLink;
     String deviceLocale = 'ar';
@@ -29,30 +30,34 @@ class ExplanationController extends GetxController {
     try {
       final response = await dioConsumer.get(path);
 
-      String? explanation = jsonDecode(response)['explanation'];
-
+      Map<String, String> explanationMap = safeStringMap(
+        jsonDecode(response) as Map<String, dynamic>,
+      );
+      explanation = explanationMap['explanation'];
       pr(response, t);
 
       await cacheExplanation(id: id, explanation: explanation ?? '');
+      await cacheAyah(id: id, ayah: explanationMap['text_ar'] ?? '');
 
       responseState = ResponseEnum.success;
       update();
 
-      return explanation;
+      return explanationMap;
     } on Exception catch (e) {
       pr('Exeption occured: $e', t);
 
-      final cached = await getCachedExplanation(id: id);
+      final cachedExplanation = await getCachedExplanation(id: id);
+      final cachedAyah = await getCachedAyah(id: id);
 
-      if (cached.isNotEmpty) {
+      if (cachedExplanation.isNotEmpty) {
         responseState = ResponseEnum.success;
         update();
-        return cached;
+        return {'explanation': cachedExplanation, 'text_ar': cachedAyah};
       }
 
       responseState = ResponseEnum.failed;
       update();
-      return null;
+      return {'explanation': "", 'text_ar': ""};
     }
   }
 
@@ -64,5 +69,15 @@ class ExplanationController extends GetxController {
   Future<String> getCachedExplanation({required String id}) async {
     SharedPreferences sharedPreferences = serviceLocator<SharedPreferences>();
     return sharedPreferences.getString(ayahExplanationKey + id) ?? '';
+  }
+
+  Future<void> cacheAyah({required String id, required String ayah}) async {
+    SharedPreferences sharedPreferences = serviceLocator<SharedPreferences>();
+    sharedPreferences.setString('$ayahExplanationKey.ayah.$id', ayah);
+  }
+
+  Future<String> getCachedAyah({required String id}) async {
+    SharedPreferences sharedPreferences = serviceLocator<SharedPreferences>();
+    return sharedPreferences.getString('$ayahExplanationKey.ayah.$id') ?? '';
   }
 }
