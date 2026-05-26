@@ -21,6 +21,7 @@ import 'package:dalalat_quran_light/features/discussions/controllers/discussion_
 import 'package:dalalat_quran_light/features/grammer_rules/controllers/grammer_ayahs_controller.dart';
 import 'package:dalalat_quran_light/features/grammer_rules/controllers/grammer_controller.dart';
 import 'package:dalalat_quran_light/features/grammer_rules/controllers/grammer_surahs_controller.dart';
+import 'package:dalalat_quran_light/features/holiday/presentation/controllers/holiday_controller.dart';
 import 'package:dalalat_quran_light/features/notifications/controllers/notifications_controller.dart';
 import 'package:dalalat_quran_light/features/quran/controllers/quran_reader_controller.dart';
 import 'package:dalalat_quran_light/features/quran/controllers/surah_list_controller.dart';
@@ -62,4 +63,5 @@ void initializeGetController() {
   Get.put(NotificationsController(), permanent: true);
   Get.put(SurahListController(), permanent: true);
   Get.put(QuranReaderController(), permanent: true);
+  Get.put(HolidayController(), permanent: true);
 }

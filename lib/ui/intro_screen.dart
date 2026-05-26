@@ -1,6 +1,8 @@
 import 'package:dalalat_quran_light/controllers/correct_word_controller.dart';
 import 'package:dalalat_quran_light/controllers/similar_word_controller.dart';
 import 'package:dalalat_quran_light/features/grammer_rules/presentation/views/grammer_rules_view.dart';
+import 'package:dalalat_quran_light/features/holiday/presentation/widgets/holiday_animated_title.dart';
+import 'package:dalalat_quran_light/features/holiday/presentation/widgets/holiday_overlay_layer.dart';
 import 'package:dalalat_quran_light/features/notifications/presentation/widgets/notifications_button.dart';
 import 'package:dalalat_quran_light/features/quran/presentation/surah_list_view.dart';
 import 'package:dalalat_quran_light/features/words/presentation/reference_view.dart';
@@ -71,14 +73,9 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
 
                   Image.asset(logoSmall, width: 40, height: 40),
-                  Text(
-                    'app_name'.tr,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: scHeight / 40,
-                      fontFamily: 'Almarai',
-                    ),
+                  Container(
+                    margin: EdgeInsets.only(top: 5),
+                    child: HolidayAnimatedTitle(fontSize: scHeight / 40),
                   ),
                   const SizedBox(height: 20),
                   Text(
@@ -199,6 +196,7 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
             ),
           ),
+          const HolidayOverlayLayer(),
           // QuestionAndResearchWidget(),
         ],
       );
